@@ -21,13 +21,13 @@ jobs:
       with:
         ref: "patch-nightly"
     - name: Getting Commit Hash
-      id: gen_hash
+      id: get_hash
       uses: pr-mpt/actions-commit-hash@v1
     - name: Generating Variables
       shell: cmd
       run: |
         echo version = [0, 3, 40] >> bml_config.py
-        echo nightly = "${{ steps.commit.outputs.short }}" >> bml_config.py
+        echo nightly = "${{ steps.get_hash.outputs.short }}" >> bml_config.py
         echo deploy_path = "Build" >> bml_config.py
         echo bmlmods_path = "" >> bml_config.py
     - name: Building BallanceModLoader
@@ -37,7 +37,7 @@ jobs:
         set VCVARS="C:\Program Files (x86)\Microsoft Visual Studio\%VS%\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
         if not exist %VCVARS% set VCVARS="C:\Program Files\Microsoft Visual Studio\%VS%\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
         call %VCVARS% ${{ matrix.msvc_arch }}
-        MSBuild BMLMods.sln -p:Platform=x86
+        MSBuild BML.sln -p:Platform=x86
     - name: Uploading Nightly Build
       uses: actions/upload-artifact@v3
       with:
