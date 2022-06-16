@@ -4,6 +4,15 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+Temp/
+Build/
+Dist/
+__pycache__/
+*.pyc
+bml_config.py
+BuildVer.h
+
+# User-specific files
 *.rsuser
 *.suo
 *.user

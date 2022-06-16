@@ -1,0 +1,21 @@
+# BML_CONFIG.PY TEMPLATE
+# You shoule copy bml_config.py.template as bml_config.py,
+# then modify it for your proper path
+
+# Specific BML version.
+version = [0, 3, 40]
+
+# Specific whether current build is nightly build.
+# If this field is blank(empty string), it mean that current build is not nightly build.
+# Otherwise, this field should fill a git commit hash ot indicate its version.
+nightly = ""
+
+# Specific BML deploy path. Usually it is Ballance root path.
+deploy_path = ""
+
+# Specific the path of official BML Mods repository.
+# This property is served for manual release packaging
+# If this field keep blank(empty string), the function of auto packaging will
+# only output dev package.
+# This property should point to Gamepiaynmo/BML-Mods root path.
+bmlmods_path = ""
