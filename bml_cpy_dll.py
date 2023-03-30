@@ -10,4 +10,4 @@ if len(sys.argv) != 2 or sys.argv[1] not in ('Debug', 'Release', ):
 
 sln_configuration = sys.argv[1]
 vcxproj_output = os.path.join('Build', sln_configuration)
-shutil.copy(os.path.join(vcxproj_output, 'BML.dll'), os.path.join(bml_config.deploy_path, 'BuildingBlocks\\BML.dll'))
+shutil.copy(os.path.join(vcxproj_output, 'BML.dll'), os.path.join(bml_config.deploy_path, 'BML.dll'))

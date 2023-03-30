@@ -1,5 +1,6 @@
 #pragma once
 
+#include "NightlyVer.h"
 #include "BuildVer.h"
 #define TOSTRING2(arg) #arg
 #define TOSTRING(arg) TOSTRING2(arg)

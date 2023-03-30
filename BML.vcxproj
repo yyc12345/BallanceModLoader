@@ -67,6 +67,7 @@
       <SupportJustMyCode>false</SupportJustMyCode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -75,7 +76,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>python bml_gen_macro.py</Command>
+      <Command>python bml_gen_nightly.py</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>python bml_cpy_dll.py $(Configuration)</Command>
@@ -95,6 +96,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -105,11 +107,10 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>python bml_gen_macro.py</Command>
+      <Command>python bml_gen_nightly.py</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>python bml_cpy_dll.py $(Configuration)
-python bml_package_release.py</Command>
+      <Command>python bml_cpy_dll.py $(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -207,6 +208,7 @@ python bml_package_release.py</Command>
     <ClInclude Include="minhook\trampoline.h" />
     <ClInclude Include="ModLoader.h" />
     <ClInclude Include="NewBallTypeMod.h" />
+    <ClInclude Include="NightlyVer.h" />
     <ClInclude Include="RegisterBB.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ScriptHelper.h" />

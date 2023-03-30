@@ -26,10 +26,8 @@ jobs:
     - name: Generating Variables
       shell: cmd
       run: |
-        echo version = [0, 3, 40] >> bml_config.py
-        echo nightly = "${{ steps.get_hash.outputs.short }}" >> bml_config.py
+        echo nightly = "${{ steps.get_hash.outputs.short }}" > bml_config.py
         echo deploy_path = "Build" >> bml_config.py
-        echo bmlmods_path = "" >> bml_config.py
     - name: Building BallanceModLoader
       shell: cmd
       run: |
@@ -37,10 +35,15 @@ jobs:
         set VCVARS="C:\Program Files (x86)\Microsoft Visual Studio\%VS%\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
         if not exist %VCVARS% set VCVARS="C:\Program Files\Microsoft Visual Studio\%VS%\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
         call %VCVARS% ${{ matrix.msvc_arch }}
-        MSBuild BML.sln -p:Platform=x86
+        MSBuild BML.sln -p:Configuration=Debug -p:Platform=x86
+        MSBuild BML.sln -p:Configuration=Release -p:Platform=x86
+    - name: Packaging Result
+      shell: cmd
+      run: |
+        python bml_package_release.py
     - name: Uploading Nightly Build
       uses: actions/upload-artifact@v3
       with:
-        name: bmlmods-nightly
-        path: Dist/Dev/BML-*-dev.zip
+        name: bml-nightly
+        path: Dist/BML-*-dev.zip
         retention-days: 30

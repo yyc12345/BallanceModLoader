@@ -569,6 +569,9 @@
     <ClInclude Include="virtools\CK2dCurvePoint.h">
       <Filter>头文件\virtools</Filter>
     </ClInclude>
+    <ClInclude Include="NightlyVer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

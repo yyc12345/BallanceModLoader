@@ -9,8 +9,6 @@ Build/
 Dist/
 __pycache__/
 *.pyc
-bml_config.py
-BuildVer.h
 
 # User-specific files
 *.rsuser
