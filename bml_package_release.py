@@ -5,7 +5,7 @@ import shutil
 # remove dist folder first
 shutil.rmtree('Dist', True)
 
-# Create dev package
+# ========== Create dev package ==========
 if (bml_config.nightly is not None) and len(bml_config.nightly) != 0:
 	dist_dir = 'Dist\\BML-nightly-{}.{}.{}.{}-dev'.format(*bml_get_ver.GetBMLVersion(), bml_config.nightly)
 else:
@@ -38,5 +38,23 @@ os.makedirs(dist_dir + '\\bin\\Debug')
 os.makedirs(dist_dir + '\\lib\\Debug')
 shutil.copy('Build\\Debug\\BML.dll', dist_dir + '\\bin\\Debug')
 shutil.copy('Build\\Debug\\BML.lib', dist_dir + '\\lib\\Debug')
+
+shutil.make_archive(dist_dir, 'zip', dist_dir)
+
+# ========== Create end user package ==========
+if (bml_config.nightly is not None) and len(bml_config.nightly) != 0:
+	dist_dir = 'Dist\\BML-nightly-{}.{}.{}.{}'.format(*bml_get_ver.GetBMLVersion(), bml_config.nightly)
+else:
+	dist_dir = 'Dist\\BML-{}.{}.{}'.format(*bml_get_ver.GetBMLVersion())
+os.makedirs(dist_dir)
+
+os.makedirs(dist_dir + '\\BuildingBlocks')
+shutil.copy('Build\\Release\\BML.dll', dist_dir + '\\BuildingBlocks')
+
+os.makedirs(dist_dir + '\\ModLoader')
+os.makedirs(dist_dir + '\\ModLoader\\Config')
+os.makedirs(dist_dir + '\\ModLoader\\Maps')
+os.makedirs(dist_dir + '\\ModLoader\\Mods')
+os.makedirs(dist_dir + '\\ModLoader\\Trails')
 
 shutil.make_archive(dist_dir, 'zip', dist_dir)
